@@ -1,5 +1,5 @@
 import axios from "axios";
-export default class TenisApi {
+export default class TenissApi {
   async buscarTodosOsTenis() {
     const { data } = await axios.get("/tenis/");
     return data;

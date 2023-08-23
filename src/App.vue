@@ -1,15 +1,15 @@
 <template>
-  <header>
+  <!-- <header>
     <router-link :to="{ name: 'home' }">Home</router-link>
     <span> | </span>
-    <router-link to="/categorias">Categorias</router-link>
+    <router-link to="/camisetas">Camisetas</router-link>
     <span> | </span>
-    <router-link to="/autores">Autor</router-link>
+    <router-link to="/chapeus">Chapeus</router-link>
     <span> | </span>
-    <router-link to="/editoras">Editoras</router-link>
+    <router-link to="/tenis">Tenis</router-link>
     <span> | </span>
-    <router-link to="/livros">Livros</router-link>
-  </header>
+    <router-link to="/calcas">Calcas</router-link>
+  </header> -->
   <main>
     <RouterView />
   </main>

@@ -25,7 +25,7 @@ export default {
       Object.assign(this.calca, calca);
     },
     async excluir(calca) {
-      await calcasApi.deletAutor(calca.id);
+      await calcasApi.deletCalca(calca.id);
       this.calcas = await calcasApi.buscarTodasAsCalcas();
     },
   },

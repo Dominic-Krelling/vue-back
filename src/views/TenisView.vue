@@ -1,49 +1,49 @@
 <script>
-import LivrosApi from "@/api/livros";
-const livrosApi = new LivrosApi();
+import TenisApi from "@/api/tenis";
+const tenisApi = new TenisApi();
 export default {
   data() {
     return {
-      livros: [],
-      livro: {},
+      tenis: [],
+      teniss: {},
     };
   },
   async created() {
-    this.livros = await livrosApi.buscarTodosOsLivros();
+    this.teniss = await tenisApi.buscarTodosOsTenis();
   },
   methods: {
     async salvar() {
-      if (this.livro.id) {
-        await livrosApi.updatLivro(this.livro);
+      if (this.teniss.id) {
+        await tenisApi.updatTenis(this.teniss);
       } else {
-        await livrosApi.addLivro(this.livro);
+        await tenisApi.addTenis(this.teniss);
       }
-      this.livro = {};
-      this.livros = await livrosApi.buscarTodosOsLivros();
+      this.teniss = {};
+      this.teniss = await tenisApi.buscarTodosOsTenis();
     },
-    editar(livro) {
-      Object.assign(this.livro, livro);
+    editar(teniss) {
+      Object.assign(this.teniss, teniss);
     },
-    async excluir(livro) {
-      await livrosApi.deleteLivro(livro.id);
-      this.editoras = await livrosApi.buscarTodosOsLivros();
+    async excluir(teniss) {
+      await tenisApi.deleteTenis(teniss.id);
+      this.teniss = await tenisApi.buscarTodosOsTenis();
     },
   },
 };
 </script>
 
 <template>
-  <h1>Livros</h1>
+  <h1>Tenis</h1>
   <hr />
   <div class="form">
-    <input type="text" v-model="livro.titulo" placeholder="titulo" />
-    <button @click="salvar(livro)">Salvar</button>
+    <input type="text" v-model="teniss.titulo" placeholder="titulo" />
+    <button @click="salvar(teniss)">Salvar</button>
   </div>
   <hr />
   <ul>
-    <li v-for="livro in livros" :key="livro.id">
-      <span @click="editar(livro)"> ({{ livro.titulo }}) </span>
-      <button @click="excluir(livro)">X</button>
+    <li v-for="teniss in teniss" :key="teniss.id">
+      <span @click="editar(teniss)"> ({{ teniss.titulo }}) </span>
+      <button @click="excluir(teniss)">X</button>
     </li>
   </ul>
 </template>

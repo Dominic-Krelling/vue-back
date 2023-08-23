@@ -1,49 +1,49 @@
 <script>
-import CategoriasApi from "@/api/categorias";
-const categoriasApi = new CategoriasApi();
+import ChapeusApi from "@/api/chapeu";
+const chapeusApi = new ChapeusApi();
 export default {
   data() {
     return {
-      categorias: [],
-      categoria: {},
+      chapeus: [],
+      chapeu: {},
     };
   },
   async created() {
-    this.categorias = await categoriasApi.buscarTodasAsCategorias();
+    this.chapeus = await chapeusApi.buscarTodasOsChapeus();
   },
   methods: {
     async salvar() {
-      if (this.categoria.id) {
-        await categoriasApi.atualizarCategoria(this.categoria);
+      if (this.chapeu.id) {
+        await chapeusApi.atualizarChapeu(this.chapeu);
       } else {
-        await categoriasApi.adicionarCategoria(this.categoria);
+        await chapeusApi.adicionarChapeu(this.chapeu);
       }
-      this.categoria = {};
-      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+      this.chapeu = {};
+      this.chapeus = await chapeusApi.buscarTodasOsChapeus();
     },
-    editar(categoria) {
-      Object.assign(this.categoria, categoria);
+    editar(chapeu) {
+      Object.assign(this.chapeu, chapeu);
     },
-    async excluir(categoria) {
-      await categoriasApi.excluirCategoria(categoria.id);
-      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+    async excluir(chapeu) {
+      await chapeusApi.excluirChapeu(chapeu.id);
+      this.chapeus = await chapeusApi.buscarTodasOsChapeus();
     },
   },
 };
 </script>
 
 <template>
-  <h1>Categoria</h1>
+  <h1>Chapeu</h1>
   <hr />
   <div class="form">
-    <input type="text" v-model="categoria.descricao" placeholder="Descrição" />
+    <input type="text" v-model="chapeu.descricao" placeholder="Descrição" />
     <button @click="salvar">Salvar</button>
   </div>
   <hr />
   <ul>
-    <li v-for="categoria in categorias" :key="categoria.id">
-      <span @click="editar(categoria)"> {{ categoria.descricao }} - </span>
-      <button @click="excluir(categoria)">X</button>
+    <li v-for="chapeu in chapeus" :key="chapeu.id">
+      <span @click="editar(chapeu)"> {{ chapeu.descricao }} - </span>
+      <button @click="excluir(chapeu)">X</button>
     </li>
   </ul>
 </template>
